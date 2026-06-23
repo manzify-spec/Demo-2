@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CENTRO Kochi — A City Hotel at the Centre of Everything</title>
+<meta name="description" content="CENTRO is a design-led city hotel in the heart of Ernakulam, Kochi. The metro, the marina and the markets are all minutes away." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#13110d;
+    --ink-2:#1b1712;
+    --ink-3:#241e17;
+    --bone:#f4efe5;
+    --bone-2:#e9e1d3;
+    --brass:#c79a4f;
+    --brass-soft:#e2c486;
+    --muted:#a99c87;
+    --muted-d:#6f6655;
+    --line:rgba(199,154,79,.22);
+    --line-light:rgba(28,22,15,.12);
+    --shadow:0 30px 70px -30px rgba(0,0,0,.6);
+    --ease:cubic-bezier(.22,1,.36,1);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--ink);
+    color:var(--bone);
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--brass);color:var(--ink)}
+
+  h1,h2,h3,.display{font-family:'Cormorant Garamond',serif;font-weight:400;line-height:1.04;letter-spacing:-.01em}
+
+  .eyebrow{
+    font-size:11px;letter-spacing:.42em;text-transform:uppercase;
+    color:var(--brass);font-weight:500;display:inline-flex;align-items:center;gap:.7em;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--brass);opacity:.7}
+
+  .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+  .btn{
+    display:inline-flex;align-items:center;gap:.6em;
+    font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;
+    padding:15px 28px;border-radius:2px;cursor:pointer;border:1px solid var(--brass);
+    background:var(--brass);color:var(--ink);transition:.4s var(--ease);position:relative;overflow:hidden;
+  }
+  .btn:hover{background:transparent;color:var(--brass-soft)}
+  .btn.ghost{background:transparent;color:var(--bone)}
+  .btn.ghost:hover{background:var(--brass);color:var(--ink);border-color:var(--brass)}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;top:0;left:0;width:100%;z-index:90;
+    transition:.5s var(--ease);
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    background:rgba(15,13,9,.82);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:84px}
+  header.scrolled .nav{height:70px}
+  .nav,.nav *{transition:.4s var(--ease)}
+  .brand{display:flex;align-items:baseline;gap:.55em;font-family:'Cormorant Garamond',serif}
+  .brand .mark{font-size:26px;letter-spacing:.32em;font-weight:500;color:var(--bone);padding-left:.32em}
+  .brand .sub{font-family:'Inter';font-size:9.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--brass)}
+  .nav-links{display:flex;align-items:center;gap:38px}
+  .nav-links a{font-size:12.5px;letter-spacing:.1em;color:var(--bone);opacity:.82;position:relative}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--brass);transition:.35s var(--ease)}
+  .nav-links a:hover{opacity:1}
+  .nav-links a:hover::after{width:100%}
+  .nav-cta{display:flex;align-items:center;gap:18px}
+  .menu-btn{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px}
+  .menu-btn span{width:24px;height:1.5px;background:var(--bone);transition:.3s}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:0}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;animation:kenburns 22s ease-out infinite alternate}
+  @keyframes kenburns{from{transform:scale(1.05)}to{transform:scale(1.16)}}
+  .hero-bg::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(15,13,9,.55) 0%,rgba(15,13,9,.2) 35%,rgba(15,13,9,.55) 70%,rgba(15,13,9,.95) 100%)}
+  .hero-grad{position:absolute;inset:0;background:radial-gradient(120% 80% at 80% 10%,rgba(199,154,79,.18),transparent 50%);z-index:1}
+  .hero-inner{position:relative;z-index:2;padding-bottom:8vh;width:100%}
+  .hero h1{font-size:clamp(3.2rem,9vw,8.2rem);font-weight:300;color:var(--bone);margin:.18em 0 .15em}
+  .hero h1 em{font-style:italic;color:var(--brass-soft)}
+  .hero p.lead{max-width:520px;font-size:clamp(15px,1.4vw,17px);color:var(--bone-2);font-weight:300;opacity:.92}
+  .hero-actions{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap}
+  .scroll-cue{position:absolute;bottom:30px;right:32px;z-index:3;display:flex;align-items:center;gap:12px;color:var(--muted);font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;writing-mode:vertical-rl}
+  .scroll-cue .line{width:1px;height:54px;background:linear-gradient(var(--brass),transparent);position:relative;overflow:hidden}
+  .scroll-cue .line::after{content:"";position:absolute;top:-50%;left:0;width:100%;height:50%;background:var(--brass);animation:drop 2s infinite}
+  @keyframes drop{0%{top:-50%}100%{top:100%}}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{position:relative}
+  .pad{padding:120px 0}
+  .pad-sm{padding:90px 0}
+  .light{background:var(--bone);color:var(--ink)}
+  .light .eyebrow{color:#a9762a}
+  .light .eyebrow::before{background:#a9762a}
+  .section-head{max-width:640px;margin-bottom:64px}
+  .section-head h2{font-size:clamp(2.4rem,5vw,4.2rem);font-weight:300;margin-top:.32em}
+  .section-head p{margin-top:18px;color:var(--muted);font-size:15.5px;max-width:540px}
+  .light .section-head p{color:var(--muted-d)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(34px);transition:1s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}.reveal.d4{transition-delay:.4s}
+
+  /* ---------- WELCOME ---------- */
+  .welcome{display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:center}
+  .welcome .copy h2{font-size:clamp(2.2rem,4.4vw,3.7rem);font-weight:300;line-height:1.08}
+  .welcome .copy h2 em{font-style:italic;color:#a9762a}
+  .welcome .copy p{margin-top:24px;color:var(--muted-d);font-size:16px;max-width:480px}
+  .welcome .copy p+p{margin-top:16px}
+  .welcome .sign{margin-top:34px;font-family:'Cormorant Garamond';font-size:30px;color:var(--ink)}
+  .welcome .sign small{display:block;font-family:'Inter';font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted-d);margin-top:4px}
+  .welcome .img-stack{position:relative;height:520px}
+  .welcome .img-stack .ph{position:absolute;border-radius:3px;overflow:hidden;box-shadow:var(--shadow)}
+  .welcome .img-stack .ph img{width:100%;height:100%;object-fit:cover}
+  .welcome .img-stack .a{width:72%;height:78%;top:0;right:0}
+  .welcome .img-stack .b{width:54%;height:48%;bottom:0;left:0;border:6px solid var(--bone)}
+  .stat-row{display:flex;gap:46px;margin-top:46px;padding-top:32px;border-top:1px solid var(--line-light)}
+  .stat .n{font-family:'Cormorant Garamond';font-size:42px;color:#a9762a;line-height:1}
+  .stat .l{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-d);margin-top:8px}
+
+  /* ---------- CONNECTIVITY BOARD (signature) ---------- */
+  .board-sec{background:var(--ink-2);overflow:hidden}
+  .board-sec::before{content:"";position:absolute;inset:0;background:radial-gradient(80% 60% at 100% 0,rgba(199,154,79,.1),transparent 60%)}
+  .board-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:center;position:relative}
+  .board-intro h2{font-size:clamp(2.4rem,5vw,4rem);font-weight:300;margin-top:.3em}
+  .board-intro h2 em{font-style:italic;color:var(--brass-soft)}
+  .board-intro p{margin-top:20px;color:var(--muted);font-size:15.5px;max-width:380px}
+  .board-intro .tag{margin-top:28px;display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);border:1px solid var(--line);padding:9px 16px;border-radius:2px}
+  .board{
+    background:linear-gradient(180deg,#0d0b07,#15110b);
+    border:1px solid var(--line);border-radius:4px;padding:8px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 40px 80px -40px rgba(0,0,0,.8);
+  }
+  .board-row{
+    display:grid;grid-template-columns:1fr auto auto;gap:18px;align-items:center;
+    padding:17px 20px;border-bottom:1px solid rgba(199,154,79,.1);
+  }
+  .board-row:last-child{border-bottom:0}
+  .board-row .dest{font-size:15px;color:var(--bone);letter-spacing:.01em}
+  .board-row .mode{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:7px}
+  .board-row .mode i{width:6px;height:6px;border-radius:50%;background:var(--brass);display:inline-block;flex:none}
+  .board-row .mode.walk i{background:#7fae8e}
+  .board-row .mode.metro i{background:var(--brass-soft)}
+  .board-row .mode.drive i{background:#c98b6a}
+  .board-row .time{font-family:'JetBrains Mono';font-size:22px;font-weight:500;color:var(--brass-soft);min-width:88px;text-align:right;font-variant-numeric:tabular-nums}
+  .board-row .time u{font-size:11px;text-decoration:none;color:var(--muted);margin-left:3px}
+  .board-foot{padding:16px 20px;font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.14em;color:var(--muted-d);display:flex;justify-content:space-between;text-transform:uppercase}
+  .board-foot .blink{color:#7fae8e}
+  .board-foot .blink::before{content:"● ";animation:blink 1.4s steps(1) infinite}
+  @keyframes blink{50%{opacity:.2}}
+
+  /* ---------- ROOMS ---------- */
+  .room-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+  .room{
+    position:relative;border-radius:3px;overflow:hidden;cursor:pointer;
+    background:var(--ink-3);min-height:420px;border:1px solid var(--line);
+  }
+  .room .rimg{position:absolute;inset:0}
+  .room .rimg img{width:100%;height:100%;object-fit:cover;transition:1.4s var(--ease)}
+  .room:hover .rimg img{transform:scale(1.08)}
+  .room::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,12,8,.05) 30%,rgba(13,11,7,.92) 100%);z-index:1}
+  .room .rbody{position:absolute;z-index:2;bottom:0;left:0;width:100%;padding:30px 30px 28px}
+  .room .rnum{font-family:'JetBrains Mono';font-size:11px;color:var(--brass);letter-spacing:.2em}
+  .room h3{font-size:30px;font-weight:400;color:var(--bone);margin:8px 0 6px}
+  .room .rmeta{font-size:12.5px;color:var(--muted);letter-spacing:.04em;display:flex;gap:16px;flex-wrap:wrap}
+  .room .rmeta span{display:flex;align-items:center;gap:7px}
+  .room .rmeta span::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--brass);opacity:.8}
+  .room .rview{margin-top:18px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-soft);display:inline-flex;align-items:center;gap:9px;opacity:0;transform:translateY(8px);transition:.5s var(--ease)}
+  .room:hover .rview{opacity:1;transform:none}
+  .room .rview svg{transition:.4s var(--ease)}
+  .room:hover .rview svg{transform:translateX(5px)}
+
+  /* room modal */
+  .modal{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:24px}
+  .modal.open{display:flex}
+  .modal-ov{position:absolute;inset:0;background:rgba(8,7,4,.86);backdrop-filter:blur(6px)}
+  .modal-card{position:relative;z-index:1;max-width:880px;width:100%;background:var(--ink-2);border:1px solid var(--line);border-radius:4px;overflow:hidden;display:grid;grid-template-columns:1.1fr .9fr;max-height:88vh}
+  .modal-card .mimg{position:relative;min-height:340px}
+  .modal-card .mimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .modal-card .mbody{padding:40px 38px;overflow-y:auto}
+  .modal-card .rnum{font-family:'JetBrains Mono';font-size:11px;color:var(--brass);letter-spacing:.2em}
+  .modal-card h3{font-size:38px;font-weight:400;margin:10px 0 14px;color:var(--bone)}
+  .modal-card p{color:var(--muted);font-size:14.5px}
+  .modal-card .feat{list-style:none;margin:24px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:12px 18px}
+  .modal-card .feat li{font-size:13px;color:var(--bone-2);display:flex;align-items:center;gap:10px}
+  .modal-card .feat li svg{flex:none;color:var(--brass)}
+  .modal-close{position:absolute;top:16px;right:16px;z-index:3;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:rgba(15,12,8,.6);color:var(--bone);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:.3s}
+  .modal-close:hover{background:var(--brass);color:var(--ink);border-color:var(--brass)}
+
+  /* ---------- AMENITIES ---------- */
+  .amen-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-light);border:1px solid var(--line-light)}
+  .amen{background:var(--bone);padding:40px 30px;transition:.45s var(--ease)}
+  .amen:hover{background:var(--ink);color:var(--bone)}
+  .amen:hover h4{color:var(--brass-soft)}
+  .amen:hover p{color:var(--muted)}
+  .amen .ic{width:38px;height:38px;color:#a9762a;margin-bottom:22px;transition:.45s var(--ease)}
+  .amen:hover .ic{color:var(--brass)}
+  .amen h4{font-family:'Cormorant Garamond';font-size:23px;font-weight:500;color:var(--ink);transition:.45s}
+  .amen p{font-size:13px;color:var(--muted-d);margin-top:8px;transition:.45s}
+
+  /* ---------- DINING split ---------- */
+  .dining{display:grid;grid-template-columns:1fr 1fr;min-height:560px}
+  .dining .d-img{position:relative;overflow:hidden}
+  .dining .d-img img{width:100%;height:100%;object-fit:cover;min-height:380px}
+  .dining .d-copy{background:var(--ink-2);display:flex;flex-direction:column;justify-content:center;padding:80px 70px}
+  .dining .d-copy h2{font-size:clamp(2.2rem,4vw,3.4rem);font-weight:300;margin-top:.3em}
+  .dining .d-copy h2 em{font-style:italic;color:var(--brass-soft)}
+  .dining .d-copy p{color:var(--muted);margin-top:20px;font-size:15px;max-width:420px}
+  .venues{margin-top:34px;display:flex;flex-direction:column;gap:0}
+  .venue{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-top:1px solid var(--line)}
+  .venue:last-child{border-bottom:1px solid var(--line)}
+  .venue .vn{font-family:'Cormorant Garamond';font-size:22px;color:var(--bone)}
+  .venue .vt{font-family:'JetBrains Mono';font-size:11px;color:var(--muted);letter-spacing:.1em}
+
+  /* ---------- GALLERY ---------- */
+  .gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px}
+  .gal figure{position:relative;overflow:hidden;border-radius:3px;cursor:pointer;background:var(--ink-3)}
+  .gal figure img{width:100%;height:100%;object-fit:cover;transition:1.2s var(--ease)}
+  .gal figure:hover img{transform:scale(1.1)}
+  .gal figure::after{content:"+";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--bone);font-size:34px;font-weight:300;background:rgba(13,11,7,.45);opacity:0;transition:.4s}
+  .gal figure:hover::after{opacity:1}
+  .gal .big{grid-column:span 2;grid-row:span 2}
+  .gal .tall{grid-row:span 2}
+  .lightbox{position:fixed;inset:0;z-index:130;display:none;align-items:center;justify-content:center;padding:30px;background:rgba(7,6,4,.92);backdrop-filter:blur(6px)}
+  .lightbox.open{display:flex}
+  .lightbox img{max-width:90%;max-height:88vh;object-fit:contain;border-radius:3px;box-shadow:var(--shadow)}
+  .lb-close{position:absolute;top:24px;right:28px;color:var(--bone);font-size:30px;cursor:pointer;background:none;border:0}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .quote{background:var(--bone);border:1px solid var(--line-light);padding:38px 34px;border-radius:3px;position:relative}
+  .quote .qm{font-family:'Cormorant Garamond';font-size:70px;color:#a9762a;line-height:.6;opacity:.4}
+  .quote p{color:var(--ink);font-size:16px;font-family:'Cormorant Garamond';font-style:italic;margin:8px 0 22px;line-height:1.45}
+  .quote .who{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-d)}
+  .quote .who b{color:#a9762a;font-weight:600}
+  .stars{color:var(--brass);font-size:13px;letter-spacing:3px;margin-bottom:6px}
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+  .contact h2{font-size:clamp(2.2rem,4.4vw,3.6rem);font-weight:300;margin-top:.3em}
+  .contact h2 em{font-style:italic;color:var(--brass-soft)}
+  .contact .info{margin-top:36px;display:flex;flex-direction:column;gap:24px}
+  .iline{display:flex;gap:16px;align-items:flex-start}
+  .iline svg{color:var(--brass);flex:none;margin-top:3px}
+  .iline .k{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .iline .v{color:var(--bone);font-size:15px;margin-top:3px}
+  .iline .v a:hover{color:var(--brass-soft)}
+  .map-embed{margin-top:30px;border-radius:4px;overflow:hidden;border:1px solid var(--line);filter:grayscale(.3) contrast(1.05)}
+  .map-embed iframe{width:100%;height:200px;border:0;display:block}
+  form .frow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .field{margin-bottom:16px;position:relative}
+  .field label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px}
+  .field input,.field select,.field textarea{
+    width:100%;background:var(--ink-2);border:1px solid var(--line);color:var(--bone);
+    padding:14px 16px;border-radius:2px;font-family:'Inter';font-size:14px;transition:.3s;
+  }
+  .field textarea{resize:vertical;min-height:110px}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--brass);background:var(--ink-3)}
+  .field select{appearance:none;cursor:pointer}
+  .form-note{font-size:12px;color:var(--muted-d);margin-top:8px}
+  .form-ok{display:none;align-items:center;gap:12px;background:rgba(127,174,142,.12);border:1px solid rgba(127,174,142,.4);color:#a9d3b3;padding:16px 18px;border-radius:3px;font-size:14px;margin-top:6px}
+  .form-ok.show{display:flex}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink-2);border-top:1px solid var(--line);padding:72px 0 30px}
+  .foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid var(--line)}
+  .foot-brand .mark{font-family:'Cormorant Garamond';font-size:30px;letter-spacing:.3em;padding-left:.3em;color:var(--bone)}
+  .foot-brand .sub{font-size:9.5px;letter-spacing:.4em;text-transform:uppercase;color:var(--brass);margin-top:4px}
+  .foot-brand p{color:var(--muted);font-size:14px;margin-top:20px;max-width:280px}
+  .foot-col h5{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-bottom:18px}
+  .foot-col a,.foot-col p{display:block;color:var(--muted);font-size:14px;margin-bottom:11px;transition:.3s}
+  .foot-col a:hover{color:var(--bone)}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:26px;flex-wrap:wrap;gap:14px}
+  .foot-bottom p{font-size:12.5px;color:var(--muted-d)}
+  .credit{font-size:12.5px;color:var(--muted)}
+  .credit a{color:var(--brass-soft);font-weight:500}
+  .credit a:hover{text-decoration:underline}
+
+  /* float whatsapp + top */
+  .wa{position:fixed;bottom:26px;right:26px;z-index:80;width:56px;height:56px;border-radius:50%;background:#1faf54;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px -8px rgba(31,175,84,.6);transition:.3s var(--ease)}
+  .wa:hover{transform:translateY(-4px) scale(1.05)}
+  .wa svg{width:28px;height:28px;fill:#fff}
+  .toTop{position:fixed;bottom:94px;right:30px;z-index:80;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:rgba(15,12,8,.7);color:var(--brass-soft);cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.4s var(--ease)}
+  .toTop.show{opacity:1;pointer-events:auto}
+  .toTop:hover{background:var(--brass);color:var(--ink)}
+
+  .demo-flag{position:fixed;top:0;left:0;z-index:95;background:var(--brass);color:var(--ink);font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;padding:5px 12px;border-bottom-right-radius:4px;font-family:'Inter'}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:980px){
+    .welcome,.board-grid,.dining,.contact-grid{grid-template-columns:1fr;gap:44px}
+    .dining .d-copy{padding:54px 36px}
+    .amen-grid{grid-template-columns:repeat(2,1fr)}
+    .quotes{grid-template-columns:1fr}
+    .gal{grid-template-columns:repeat(2,1fr)}
+    .modal-card{grid-template-columns:1fr;max-height:90vh;overflow-y:auto}
+    .modal-card .mimg{min-height:240px}
+    .foot-top{grid-template-columns:1fr 1fr;gap:34px}
+  }
+  @media(max-width:680px){
+    .wrap{padding:0 20px}
+    .pad{padding:78px 0}.pad-sm{padding:60px 0}
+    .nav-links{
+      position:fixed;top:0;right:0;height:100vh;width:78%;max-width:320px;background:var(--ink-2);
+      flex-direction:column;align-items:flex-start;justify-content:center;gap:30px;padding:0 40px;
+      transform:translateX(100%);transition:.5s var(--ease);border-left:1px solid var(--line);z-index:100;
+    }
+    .nav-links.open{transform:none}
+    .nav-links a{font-size:18px}
+    .menu-btn{display:flex;z-index:101}
+    .nav-cta .btn{display:none}
+    .room-grid{grid-template-columns:1fr}
+    .amen-grid{grid-template-columns:1fr}
+    .gal{grid-template-columns:1fr;grid-auto-rows:230px}
+    .gal .big,.gal .tall{grid-column:auto;grid-row:auto}
+    .stat-row{flex-wrap:wrap;gap:28px}
+    .board-row{grid-template-columns:1fr auto;gap:6px 14px}
+    .board-row .mode{grid-column:1;order:3}
+    .board-row .time{grid-row:1;grid-column:2}
+    .scroll-cue{display:none}
+    form .frow{grid-template-columns:1fr}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important}
+    .reveal{opacity:1!important;transform:none!important}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+<div class="demo-flag">Demo · Empower AI Tech</div>
+
+<!-- NAV -->
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <span class="mark">CENTRO</span>
+      <span class="sub">Kochi</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#welcome">The Hotel</a>
+      <a href="#connect">Location</a>
+      <a href="#rooms">Rooms</a>
+      <a href="#dining">Dining</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contact" class="btn">Enquire</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=2000&q=80" alt="CENTRO Kochi at dusk" onerror="this.style.display='none'">
+  </div>
+  <div class="hero-grad"></div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow">Ernakulam · Kochi</span>
+    <h1>The centre of<br>the city, the<br>centre of your <em>stay.</em></h1>
+    <p class="lead">A design-led city hotel in the heart of Ernakulam — where the metro, the marina and the markets are all a short walk away.</p>
+    <div class="hero-actions">
+      <a href="#rooms" class="btn">Explore Rooms</a>
+      <a href="#connect" class="btn ghost">See the Location</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+</section>
+
+<!-- WELCOME -->
+<section class="light pad" id="welcome">
+  <div class="wrap welcome">
+    <div class="copy reveal">
+      <span class="eyebrow">Welcome to CENTRO</span>
+      <h2>Built for the way you <em>move</em> through Kochi.</h2>
+      <p>CENTRO isn't a resort on the edge of town — it's a hotel that puts you right in the middle of everything. Step out and you're moments from the Metro, Marine Drive, the shopping streets and the city's best food.</p>
+      <p>Inside, warm interiors, generous light and quiet, considered rooms give you a calm base between the meetings, the markets and the moments that bring you to the city.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="n" data-count="86">0</div><div class="l">Rooms & Suites</div></div>
+        <div class="stat"><div class="n" data-count="3" data-suffix=" min">0</div><div class="l">To the Metro</div></div>
+        <div class="stat"><div class="n" data-count="24" data-suffix="/7">0</div><div class="l">Dining & Service</div></div>
+      </div>
+      <div class="sign">A. Menon<small>General Manager</small></div>
+    </div>
+    <div class="img-stack reveal d2">
+      <div class="ph a"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1100&q=80" alt="Hotel lobby" onerror="this.parentElement.style.background='linear-gradient(135deg,#241e17,#3a2f22)'"></div>
+      <div class="ph b"><img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=900&q=80" alt="Hotel interior detail" onerror="this.parentElement.style.background='linear-gradient(135deg,#c79a4f,#8a6a2f)'"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONNECTIVITY BOARD (signature) -->
+<section class="board-sec pad" id="connect">
+  <div class="wrap board-grid">
+    <div class="board-intro reveal">
+      <span class="eyebrow">Everywhere, minutes away</span>
+      <h2>Kochi, in <em>minutes.</em></h2>
+      <p>No backwater view to sell you — just the whole city at your doorstep. Here's how fast you reach the places that matter.</p>
+      <span class="tag">Live from the lobby · CENTRO Kochi</span>
+    </div>
+    <div class="board reveal d2" id="board">
+      <div class="board-row">
+        <span class="dest">Kochi Metro — MG Road Station</span>
+        <span class="mode metro"><i></i>Metro</span>
+        <span class="time" data-min="3">0<u>min</u></span>
+      </div>
+      <div class="board-row">
+        <span class="dest">Marine Drive Promenade</span>
+        <span class="mode walk"><i></i>Walk</span>
+        <span class="time" data-min="6">0<u>min</u></span>
+      </div>
+      <div class="board-row">
+        <span class="dest">Broadway &amp; Centre Square Shopping</span>
+        <span class="mode walk"><i></i>Walk</span>
+        <span class="time" data-min="5">0<u>min</u></span>
+      </div>
+      <div class="board-row">
+        <span class="dest">Ernakulam Junction Railway</span>
+        <span class="mode drive"><i></i>Drive</span>
+        <span class="time" data-min="9">0<u>min</u></span>
+      </div>
+      <div class="board-row">
+        <span class="dest">Lulu Mall, Edappally</span>
+        <span class="mode drive"><i></i>Drive</span>
+        <span class="time" data-min="14">0<u>min</u></span>
+      </div>
+      <div class="board-row">
+        <span class="dest">Fort Kochi &amp; Chinese Nets</span>
+        <span class="mode drive"><i></i>Drive</span>
+        <span class="time" data-min="25">0<u>min</u></span>
+      </div>
+      <div class="board-row">
+        <span class="dest">InfoPark · SmartCity Kochi</span>
+        <span class="mode drive"><i></i>Drive</span>
+        <span class="time" data-min="30">0<u>min</u></span>
+      </div>
+      <div class="board-row">
+        <span class="dest">Cochin International Airport</span>
+        <span class="mode drive"><i></i>Drive</span>
+        <span class="time" data-min="45">0<u>min</u></span>
+      </div>
+      <div class="board-foot">
+        <span class="blink">Updated continuously</span>
+        <span>Centre of Ernakulam</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROOMS -->
+<section class="pad" id="rooms">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Stay</span>
+      <h2>Rooms made for the city.</h2>
+      <p>Four ways to stay — each one quiet, light-filled and designed around rest. Tap any room to see what's inside.</p>
+    </div>
+    <div class="room-grid">
+      <article class="room reveal" data-room="0">
+        <div class="rimg"><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1100&q=80" alt="Urban Queen Room" onerror="this.parentElement.style.background='linear-gradient(135deg,#241e17,#3a2f22)'"></div>
+        <div class="rbody">
+          <span class="rnum">01 — Compact comfort</span>
+          <h3>Urban Queen</h3>
+          <div class="rmeta"><span>22 m²</span><span>Queen bed</span><span>City window</span></div>
+          <span class="rview">View room <svg width="18" height="8" viewBox="0 0 18 8" fill="none"><path d="M0 4h16M13 1l3 3-3 3" stroke="currentColor" stroke-width="1.3"/></svg></span>
+        </div>
+      </article>
+      <article class="room reveal d2" data-room="1">
+        <div class="rimg"><img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1100&q=80" alt="Deluxe King Room" onerror="this.parentElement.style.background='linear-gradient(135deg,#241e17,#3a2f22)'"></div>
+        <div class="rbody">
+          <span class="rnum">02 — Most loved</span>
+          <h3>Deluxe King</h3>
+          <div class="rmeta"><span>30 m²</span><span>King bed</span><span>Lounge chair</span></div>
+          <span class="rview">View room <svg width="18" height="8" viewBox="0 0 18 8" fill="none"><path d="M0 4h16M13 1l3 3-3 3" stroke="currentColor" stroke-width="1.3"/></svg></span>
+        </div>
+      </article>
+      <article class="room reveal" data-room="2">
+        <div class="rimg"><img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1100&q=80" alt="Executive Suite" onerror="this.parentElement.style.background='linear-gradient(135deg,#241e17,#3a2f22)'"></div>
+        <div class="rbody">
+          <span class="rnum">03 — Space to work</span>
+          <h3>Executive Suite</h3>
+          <div class="rmeta"><span>42 m²</span><span>King bed</span><span>Work desk</span></div>
+          <span class="rview">View room <svg width="18" height="8" viewBox="0 0 18 8" fill="none"><path d="M0 4h16M13 1l3 3-3 3" stroke="currentColor" stroke-width="1.3"/></svg></span>
+        </div>
+      </article>
+      <article class="room reveal d2" data-room="3">
+        <div class="rimg"><img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1100&q=80" alt="CENTRO Signature Suite" onerror="this.parentElement.style.background='linear-gradient(135deg,#241e17,#3a2f22)'"></div>
+        <div class="rbody">
+          <span class="rnum">04 — Top of the house</span>
+          <h3>CENTRO Suite</h3>
+          <div class="rmeta"><span>58 m²</span><span>King bed</span><span>Living room</span></div>
+          <span class="rview">View room <svg width="18" height="8" viewBox="0 0 18 8" fill="none"><path d="M0 4h16M13 1l3 3-3 3" stroke="currentColor" stroke-width="1.3"/></svg></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section class="light pad-sm">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Facilities</span>
+      <h2>Everything you need, on site.</h2>
+    </div>
+    <div class="amen-grid reveal">
+      <div class="amen">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg>
+        <h4>Rooftop Lounge</h4>
+        <p>Skyline views over Ernakulam, with an evening bar.</p>
+      </div>
+      <div class="amen">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 11h16M4 11a8 8 0 0116 0M7 11V7a5 5 0 0110 0v4M9 18h6"/></svg>
+        <h4>All-Day Dining</h4>
+        <p>Kerala and continental kitchens, open round the clock.</p>
+      </div>
+      <div class="amen">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 7v10M18 7v10M6 12h12M3 9v6M21 9v6"/></svg>
+        <h4>Fitness Studio</h4>
+        <p>Fully equipped gym with trainers on request.</p>
+      </div>
+      <div class="amen">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 13a9 9 0 0114 0M8.5 16a4.5 4.5 0 017 0M12 19h.01"/></svg>
+        <h4>Fast Wi-Fi</h4>
+        <p>Reliable high-speed internet across the whole hotel.</p>
+      </div>
+      <div class="amen">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 17h2l1-4h12l1 4h2M6 13l1.5-5h9L18 13M7 17v2M17 17v2M8 9h8"/></svg>
+        <h4>Airport Transfer</h4>
+        <p>Private pick-up and drop to Cochin International.</p>
+      </div>
+      <div class="amen">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 7h16v10H4zM4 7l8 6 8-6"/></svg>
+        <h4>Business Lounge</h4>
+        <p>Quiet meeting space and a boardroom for ten.</p>
+      </div>
+      <div class="amen">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg>
+        <h4>24h Reception</h4>
+        <p>Concierge and front desk, whenever you arrive.</p>
+      </div>
+      <div class="amen">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 11l7-7 7 7M5 11v9h14v-9M9 20v-5h6v5"/></svg>
+        <h4>Metro Shuttle</h4>
+        <p>Door-to-station shuttle so the city is even closer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DINING -->
+<section id="dining">
+  <div class="dining">
+    <div class="d-img reveal">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1300&q=80" alt="CENTRO restaurant" onerror="this.parentElement.style.background='linear-gradient(135deg,#241e17,#3a2f22)'">
+    </div>
+    <div class="d-copy reveal d2">
+      <span class="eyebrow">Eat & Drink</span>
+      <h2>Food worth staying <em>in</em> for.</h2>
+      <p>From a Kerala breakfast to a late rooftop drink, CENTRO keeps three distinct kitchens running so you're never far from a good meal — at any hour.</p>
+      <div class="venues">
+        <div class="venue"><span class="vn"> Format · All-Day Kitchen</span><span class="vt">06:30 – 23:00</span></div>
+        <div class="venue"><span class="vn">Backwater · Coastal Kerala</span><span class="vt">12:00 – 23:30</span></div>
+        <div class="venue"><span class="vn">Altitude · Rooftop Bar</span><span class="vt">17:00 – 01:00</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="pad" id="gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Gallery</span>
+      <h2>A look inside.</h2>
+    </div>
+    <div class="gal reveal" id="gal">
+      <figure class="big"><img src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=1300&q=80" alt="Lobby" onerror="this.parentElement.style.background='linear-gradient(135deg,#241e17,#3a2f22)'"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80" alt="Room" onerror="this.parentElement.style.background='linear-gradient(135deg,#241e17,#3a2f22)'"></figure>
+      <figure class="tall"><img src="https://images.unsplash.com/photo-1631049035182-249067d7618e?auto=format&fit=crop&w=800&q=80" alt="Bathroom" onerror="this.parentElement.style.background='linear-gradient(135deg,#241e17,#3a2f22)'"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80" alt="Dining" onerror="this.parentElement.style.background='linear-gradient(135deg,#241e17,#3a2f22)'"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format&fit=crop&w=800&q=80" alt="Suite" onerror="this.parentElement.style.background='linear-gradient(135deg,#241e17,#3a2f22)'"></figure>
+      <figure class="tall"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Lounge" onerror="this.parentElement.style.background='linear-gradient(135deg,#241e17,#3a2f22)'"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" alt="Spa" onerror="this.parentElement.style.background='linear-gradient(135deg,#241e17,#3a2f22)'"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80" alt="Rooftop" onerror="this.parentElement.style.background='linear-gradient(135deg,#241e17,#3a2f22)'"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="light pad-sm">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Guests</span>
+      <h2>What people say.</h2>
+    </div>
+    <div class="quotes">
+      <div class="quote reveal">
+        <div class="qm">"</div>
+        <div class="stars">★★★★★</div>
+        <p>Walked to my meetings on MG Road, the metro and Marine Drive — never needed a cab. Exactly what a city stay should be.</p>
+        <div class="who"><b>Rahul N.</b> · Business traveller</div>
+      </div>
+      <div class="quote reveal d2">
+        <div class="qm">"</div>
+        <div class="stars">★★★★★</div>
+        <p>Spotless rooms, warm staff and the rooftop bar at sunset is something else. Brilliant base for exploring Kochi.</p>
+        <div class="who"><b>Sandra &amp; Tom</b> · Visiting from the UK</div>
+      </div>
+      <div class="quote reveal d3">
+        <div class="qm">"</div>
+        <div class="stars">★★★★★</div>
+        <p>Booked it for the location, stayed for the food. The all-day kitchen saved us after a late flight. Will return.</p>
+        <div class="who"><b>Aishwarya K.</b> · Family trip</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="pad" id="contact">
+  <div class="wrap contact-grid contact">
+    <div class="reveal">
+      <span class="eyebrow">Get in touch</span>
+      <h2>Plan your stay at <em>CENTRO.</em></h2>
+      <div class="info">
+        <div class="iline">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-6.3-7-11a7 7 0 0114 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <div><div class="k">Address</div><div class="v">CENTRO Kochi, MG Road, Ernakulam,<br>Kochi, Kerala 682011</div></div>
+        </div>
+        <div class="iline">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 4h4l2 5-3 2a12 12 0 005 5l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>
+          <div><div class="k">Reservations</div><div class="v"><a href="tel:+914841234567">+91 484 123 4567</a></div></div>
+        </div>
+        <div class="iline">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 6h16v12H4zM4 7l8 6 8-6"/></svg>
+          <div><div class="k">Email</div><div class="v"><a href="mailto:stay@centrokochi.com">stay@centrokochi.com</a></div></div>
+        </div>
+      </div>
+      <div class="map-embed">
+        <iframe loading="lazy" title="CENTRO Kochi location" src="https://maps.google.com/maps?q=MG%20Road%20Ernakulam%20Kochi&t=&z=14&ie=UTF8&iwloc=&output=embed"></iframe>
+      </div>
+    </div>
+
+    <div class="reveal d2">
+      <form id="enqForm" novalidate>
+        <div class="frow">
+          <div class="field"><label>First name</label><input type="text" name="first" required></div>
+          <div class="field"><label>Last name</label><input type="text" name="last" required></div>
+        </div>
+        <div class="frow">
+          <div class="field"><label>Email</label><input type="email" name="email" required></div>
+          <div class="field"><label>Phone</label><input type="tel" name="phone"></div>
+        </div>
+        <div class="field">
+          <label>I'm interested in</label>
+          <select name="room">
+            <option>Urban Queen</option>
+            <option selected>Deluxe King</option>
+            <option>Executive Suite</option>
+            <option>CENTRO Suite</option>
+            <option>Events &amp; meetings</option>
+          </select>
+        </div>
+        <div class="field"><label>Message</label><textarea name="msg" placeholder="Dates, number of guests, anything we should know…"></textarea></div>
+        <button type="submit" class="btn" style="width:100%;justify-content:center">Send enquiry</button>
+        <p class="form-note">This is a demo enquiry form — no message is actually sent.</p>
+        <div class="form-ok" id="formOk">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          <span>Thanks — your enquiry has been received. Our team will be in touch shortly.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="mark">CENTRO</div>
+        <div class="sub">Kochi</div>
+        <p>A design-led city hotel in the heart of Ernakulam. Stay central, reach everywhere.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Explore</h5>
+        <a href="#welcome">The Hotel</a>
+        <a href="#connect">Location</a>
+        <a href="#rooms">Rooms</a>
+        <a href="#dining">Dining</a>
+      </div>
+      <div class="foot-col">
+        <h5>Visit</h5>
+        <p>MG Road, Ernakulam</p>
+        <p>Kochi, Kerala 682011</p>
+        <a href="tel:+914841234567">+91 484 123 4567</a>
+        <a href="mailto:stay@centrokochi.com">stay@centrokochi.com</a>
+      </div>
+      <div class="foot-col">
+        <h5>Follow</h5>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">Tripadvisor</a>
+        <a href="#">Google</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 CENTRO Kochi. All rights reserved.</p>
+      <p class="credit">Website crafted by <a href="#" target="_blank" rel="noopener">Empower AI Tech</a> · Kochi</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ROOM MODAL -->
+<div class="modal" id="roomModal" aria-hidden="true">
+  <div class="modal-ov" data-close></div>
+  <div class="modal-card">
+    <button class="modal-close" data-close aria-label="Close">✕</button>
+    <div class="mimg"><img id="mImg" src="" alt=""></div>
+    <div class="mbody">
+      <span class="rnum" id="mNum"></span>
+      <h3 id="mTitle"></h3>
+      <p id="mDesc"></p>
+      <ul class="feat" id="mFeat"></ul>
+      <a href="#contact" class="btn" data-close style="margin-top:28px">Enquire about this room</a>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox"><button class="lb-close" id="lbClose">✕</button><img id="lbImg" src="" alt=""></div>
+
+<!-- FLOATING -->
+<a class="wa" href="https://wa.me/919847000000" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.6 15l-1 3.7 3.8-1A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.3.6.6-2.2-.2-.3A8 8 0 1112 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 01-1.9-1.2 7.2 7.2 0 01-1.3-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 00-.7.3A2.9 2.9 0 006 7.6 5 5 0 007 10.3a11.4 11.4 0 004.4 3.9c.6.3 1.1.4 1.5.5a3.6 3.6 0 001.6.1c.5-.1 1.4-.6 1.6-1.1s.2-1 .1-1.1z"/></svg>
+</a>
+<button class="toTop" id="toTop" aria-label="Back to top">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(s,c){return (c||document).querySelector(s)};
+  var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+
+  /* ---- nav scroll state ---- */
+  var hdr=$('#hdr'), toTop=$('#toTop');
+  function onScroll(){
+    var y=window.pageYOffset||document.documentElement.scrollTop;
+    hdr.classList.toggle('scrolled', y>40);
+    toTop.classList.toggle('show', y>700);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  toTop.addEventListener('click', function(){window.scrollTo({top:0,behavior:'smooth'})});
+
+  /* ---- mobile menu ---- */
+  var menuBtn=$('#menuBtn'), navLinks=$('#navLinks');
+  function closeMenu(){navLinks.classList.remove('open')}
+  menuBtn.addEventListener('click', function(){navLinks.classList.toggle('open')});
+  $$('#navLinks a').forEach(function(a){a.addEventListener('click', closeMenu)});
+
+  /* ---- reveal on scroll ---- */
+  var io;
+  if('IntersectionObserver' in window){
+    io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    },{threshold:.16});
+    $$('.reveal').forEach(function(el){io.observe(el)});
+  } else {
+    $$('.reveal').forEach(function(el){el.classList.add('in')});
+  }
+
+  /* ---- stat count up ---- */
+  function animateCount(el){
+    var target=parseFloat(el.getAttribute('data-count'))||0;
+    var suffix=el.getAttribute('data-suffix')||'';
+    var dur=1400, start=null;
+    function step(ts){
+      if(!start) start=ts;
+      var p=Math.min((ts-start)/dur,1);
+      var eased=1-Math.pow(1-p,3);
+      el.textContent=Math.round(target*eased)+suffix;
+      if(p<1) requestAnimationFrame(step); else el.textContent=target+suffix;
+    }
+    requestAnimationFrame(step);
+  }
+  /* ---- board minutes count up ---- */
+  function animateBoard(){
+    $$('#board .time').forEach(function(el){
+      var target=parseInt(el.getAttribute('data-min'),10)||0;
+      var dur=1100, start=null;
+      function step(ts){
+        if(!start) start=ts;
+        var p=Math.min((ts-start)/dur,1);
+        var eased=1-Math.pow(1-p,3);
+        el.firstChild.nodeValue=Math.round(target*eased);
+        if(p<1) requestAnimationFrame(step); else el.firstChild.nodeValue=target;
+      }
+      requestAnimationFrame(step);
+    });
+  }
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if('IntersectionObserver' in window && !reduce){
+    var countObs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ animateCount(e.target); countObs.unobserve(e.target); }
+      });
+    },{threshold:.6});
+    $$('[data-count]').forEach(function(el){countObs.observe(el)});
+
+    var boardObs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ animateBoard(); boardObs.unobserve(e.target); }
+      });
+    },{threshold:.4});
+    var board=$('#board'); if(board) boardObs.observe(board);
+  } else {
+    $$('[data-count]').forEach(function(el){el.textContent=el.getAttribute('data-count')+(el.getAttribute('data-suffix')||'')});
+    $$('#board .time').forEach(function(el){el.firstChild.nodeValue=el.getAttribute('data-min')});
+  }
+
+  /* ---- room data + modal ---- */
+  var rooms=[
+    {num:'01 — Compact comfort', title:'Urban Queen', img:'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=80',
+     desc:'A smart, light-filled room for the solo traveller or short city stay — everything you need, nothing you don\'t.',
+     feat:['22 m² of space','Queen bed','City-facing window','Rainfall shower','Smart TV & fast Wi-Fi','Tea & coffee station']},
+    {num:'02 — Most loved', title:'Deluxe King', img:'https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1200&q=80',
+     desc:'Our most popular room — a generous king bed, a reading chair and a calm palette built for a proper night\'s rest.',
+     feat:['30 m² of space','King bed','Lounge chair','Walk-in rainfall shower','Work nook','Premium toiletries']},
+    {num:'03 — Space to work', title:'Executive Suite', img:'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80',
+     desc:'A separate work zone and a wide bed make this the natural choice for longer or business stays in the city.',
+     feat:['42 m² of space','King bed','Dedicated work desk','Lounge seating','Bathtub & shower','Executive lounge access']},
+    {num:'04 — Top of the house', title:'CENTRO Suite', img:'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80',
+     desc:'Our signature suite — a separate living room, the best light in the building and the quietest corner of Kochi.',
+     feat:['58 m² of space','King bed','Separate living room','Soaking tub','Rooftop & lounge access','Personalised check-in']}
+  ];
+  var modal=$('#roomModal');
+  function openRoom(i){
+    var r=rooms[i]; if(!r) return;
+    $('#mImg').src=r.img; $('#mImg').alt=r.title;
+    $('#mNum').textContent=r.num; $('#mTitle').textContent=r.title; $('#mDesc').textContent=r.desc;
+    var ul=$('#mFeat'); ul.innerHTML='';
+    r.feat.forEach(function(f){
+      var li=document.createElement('li');
+      li.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>'+f;
+      ul.appendChild(li);
+    });
+    modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+  }
+  function closeRoom(){modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''}
+  $$('.room').forEach(function(el){
+    el.addEventListener('click', function(){openRoom(parseInt(el.getAttribute('data-room'),10))});
+  });
+  $$('[data-close]', modal).forEach(function(el){el.addEventListener('click', closeRoom)});
+
+  /* ---- lightbox ---- */
+  var lb=$('#lightbox'), lbImg=$('#lbImg');
+  $$('#gal figure img').forEach(function(img){
+    img.parentElement.addEventListener('click', function(){
+      lbImg.src=img.src; lbImg.alt=img.alt||''; lb.classList.add('open'); document.body.style.overflow='hidden';
+    });
+  });
+  function closeLb(){lb.classList.remove('open'); document.body.style.overflow=''}
+  $('#lbClose').addEventListener('click', closeLb);
+  lb.addEventListener('click', function(e){ if(e.target===lb) closeLb(); });
+
+  /* ---- esc to close ---- */
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape'){ closeRoom(); closeLb(); closeMenu(); }
+  });
+
+  /* ---- enquiry form ---- */
+  var form=$('#enqForm'), ok=$('#formOk');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var valid=true;
+    $$('input[required]', form).forEach(function(inp){
+      if(!inp.value.trim()){ inp.style.borderColor='#c2674e'; valid=false; }
+      else inp.style.borderColor='';
+    });
+    var email=form.querySelector('input[name="email"]');
+    if(email.value && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value)){ email.style.borderColor='#c2674e'; valid=false; }
+    if(!valid) return;
+    ok.classList.add('show');
+    form.querySelector('button[type="submit"]').textContent='Enquiry sent';
+    setTimeout(function(){ form.reset(); ok.classList.remove('show'); form.querySelector('button[type="submit"]').textContent='Send enquiry'; }, 5000);
+  });
+})();
+</script>
+</body>
+</html>
