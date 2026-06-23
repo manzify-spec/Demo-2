@@ -1,1 +1,1 @@
-Hotel Web Demo Cntro Kochi
+Hotel Web Demo Centro Kochi
